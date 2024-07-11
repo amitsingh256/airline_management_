@@ -21,7 +21,7 @@ public class Connect {
 				Class.forName(driver);   
 				con= DriverManager.getConnection(url, user, password);
 				stmt=con.createStatement();
-				
+			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
