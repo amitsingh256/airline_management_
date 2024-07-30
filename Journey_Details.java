@@ -12,32 +12,36 @@ public class Journey_Details extends JFrame implements ActionListener{
     JButton show ,reset;
     
     public Journey_Details() {
-        
+    	ImageIcon i1= new ImageIcon(ClassLoader.getSystemResource("AirLine_Management/icons/airindia.png"));
+		JLabel image= new JLabel(i1);
+		image.setBounds(0,0,1200,200);
+		add(image);
+		
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
         JLabel lblpnr = new JLabel("ENTER PNR :");
         lblpnr.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblpnr.setBounds(350, 100, 100, 35);
-        add(lblpnr);
+        lblpnr.setBounds(350, 150, 100, 35);
+        image.add(lblpnr);
         
         pnr = new JTextField();
-        pnr.setBounds(450, 100, 210, 35);
-        add(pnr);
+        pnr.setBounds(450, 150, 210, 35);
+        image.add(pnr);
         
         show = new JButton("Show Details");
         show.setBackground(Color.BLACK);
         show.setForeground(Color.WHITE);
-        show.setBounds(680, 105, 110, 25);
+        show.setBounds(680, 155, 110, 25);
         show.addActionListener(this);
-        add(show);
+        image.add(show);
         
         reset = new JButton("RESET");
         reset.setBackground(Color.BLACK);
         reset.setForeground(Color.WHITE);
-        reset.setBounds(800, 105, 110, 25);
+        reset.setBounds(800, 155, 110, 25);
         reset.addActionListener(this);
-        add(reset);
+        image.add(reset);
         
         table = new JTable();
         
