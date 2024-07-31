@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
 public class Add_Passenger extends JFrame implements ActionListener{
-	 JTextField tfname,tfnationality,tfpassport,tfemail,tfmobile,tffrom,tfto;
+	 JTextField tfname,tfnationality,tfpassport,tfemail,tfmobile;
 	 JRadioButton jrmale,jrfemale,jrother;
 	
 	public Add_Passenger() {
@@ -35,6 +35,7 @@ public class Add_Passenger extends JFrame implements ActionListener{
 		JLabel lblname = new JLabel("Name of Passenger :");
 		lblname .setFont(new Font("tahoma", Font.PLAIN, 20));
 		lblname .setBounds(30,110,200,30);
+		
 		image.add(lblname );
 		 tfname= new JTextField();
 		tfname.setFont(new Font("tahoma", Font.PLAIN, 18));
@@ -144,6 +145,7 @@ public class Add_Passenger extends JFrame implements ActionListener{
 		       
 				c.stmt.executeUpdate(query);
 				JOptionPane.showMessageDialog(null,"Data saved Successfully");
+				new Book_flight();
 				setVisible(false);
 			
 			} catch (Exception e) {
