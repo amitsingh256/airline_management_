@@ -1,5 +1,6 @@
 package AirLine_Management;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,9 +9,9 @@ import java.util.*;
 
 public class Boarding_pass extends JFrame implements ActionListener {
 
-	JTextField tfpnr;
-	JLabel tfname, tfnationality, lblsrc, lbldest, labelfname, labelfcode, labeldate;
-	JButton fetchButton;
+	JTextField tfmobile;
+	JLabel tfname, tfpnr,tfticket, tfsrc, tfdest, labelfname, labelfcode, labeldate;
+	JButton fetchButton,flight;
 
 	public Boarding_pass() {
 		getContentPane().setBackground(Color.WHITE);
@@ -27,14 +28,14 @@ public class Boarding_pass extends JFrame implements ActionListener {
 		subheading.setForeground(Color.BLUE);
 		add(subheading);
 
-		JLabel lblaadhar = new JLabel("PNR NO.: ");
-		lblaadhar.setBounds(60, 100, 150, 25);
-		lblaadhar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		add(lblaadhar);
+		JLabel lblmobile = new JLabel("MOBILE NO.: ");
+		lblmobile.setBounds(60, 100, 150, 25);
+		lblmobile.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		add(lblmobile);
 
-		tfpnr = new JTextField();
-		tfpnr.setBounds(180, 100, 200, 25);
-		add(tfpnr);
+		tfmobile = new JTextField();
+		tfmobile.setBounds(180, 100, 200, 25);
+		add(tfmobile);
 
 		fetchButton = new JButton("Enter");
 		fetchButton.setBackground(Color.BLACK);
@@ -51,60 +52,77 @@ public class Boarding_pass extends JFrame implements ActionListener {
 		tfname = new JLabel();
 		tfname.setBounds(220, 140, 150, 25);
 		add(tfname);
+		
 
-		JLabel lblnationality = new JLabel("NATIONALITY :");
-		lblnationality.setBounds(60, 180, 150, 25);
-		lblnationality.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		add(lblnationality);
+		JLabel lblticket = new JLabel("TICKET NO. :");
+		lblticket.setBounds(60, 180, 150, 25);
+		lblticket.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		add(lblticket);
 
-		tfnationality = new JLabel();
-		tfnationality.setBounds(220, 180, 150, 25);
-		add(tfnationality);
+		tfticket = new JLabel();
+		tfticket.setBounds(220, 180, 150, 25);
+		add(tfticket);
+
+		JLabel lblpnr = new JLabel("PNR NO. :");
+		lblpnr.setBounds(60, 220, 150, 25);
+		lblpnr.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		add(lblpnr);
+
+		tfpnr = new JLabel();
+		tfpnr.setBounds(220, 220, 150, 25);
+		add(tfpnr);
 
 		JLabel lblsrc = new JLabel("SOURCE :");
-		lblsrc.setBounds(60, 220, 150, 25);
+		lblsrc.setBounds(60, 260, 150, 25);
 		lblsrc.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lblsrc);
 
-		lblsrc = new JLabel();
-		lblsrc.setBounds(220, 220, 150, 25);
-		add(lblsrc);
+		tfsrc = new JLabel();
+		tfsrc.setBounds(220, 260, 150, 25);
+		add(tfsrc);
 
 		JLabel lbldest = new JLabel("DEST. :");
-		lbldest.setBounds(380, 220, 150, 25);
+		lbldest.setBounds(380, 260, 150, 25);
 		lbldest.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lbldest);
 
-		lbldest = new JLabel();
-		lbldest.setBounds(540, 220, 150, 25);
-		add(lbldest);
+		tfdest = new JLabel();
+		tfdest.setBounds(540, 260, 150, 25);
+		add(tfdest);
 
 		JLabel lblfname = new JLabel("Flight Name :");
-		lblfname.setBounds(60, 260, 150, 25);
+		lblfname.setBounds(60, 300, 150, 25);
 		lblfname.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lblfname);
 
 		labelfname = new JLabel();
-		labelfname.setBounds(220, 260, 150, 25);
+		labelfname.setBounds(220, 300, 150, 25);
 		add(labelfname);
 
 		JLabel lblfcode = new JLabel("Flight Code :");
-		lblfcode.setBounds(380, 260, 150, 25);
+		lblfcode.setBounds(380, 300, 150, 25);
 		lblfcode.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lblfcode);
 
 		labelfcode = new JLabel();
-		labelfcode.setBounds(540, 260, 150, 25);
+		labelfcode.setBounds(540, 300, 150, 25);
 		add(labelfcode);
 
 		JLabel lbldate = new JLabel("Date :");
-		lbldate.setBounds(60, 300, 150, 25);
+		lbldate.setBounds(60, 340, 150, 25);
 		lbldate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lbldate);
 
 		labeldate = new JLabel();
-		labeldate.setBounds(220, 300, 150, 25);
+		labeldate.setBounds(220, 340, 150, 25);
 		add(labeldate);
+		
+		  flight = new JButton("PRINT");
+	        flight.setBackground(Color.GRAY);
+	        flight.setForeground(Color.GREEN);
+	        flight.setBounds(400, 380, 120, 25);
+	        flight.addActionListener(this);
+	        add(flight);
 
 		ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("Airline_Management/icons/Air.logo.png"));
 		Image i2 = i1.getImage().getScaledInstance(300, 230, Image.SCALE_DEFAULT);
@@ -119,31 +137,34 @@ public class Boarding_pass extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		String pnr = tfpnr.getText();
+		String mobile = tfmobile.getText();
 
 		try {
 			Connect c = new Connect();
 
-			String query = "select * from reservation where PNR = '" + pnr + "'";
+			String query = "select * from reservation where mobile = '" + mobile + "'";
 
 			ResultSet rs = c.stmt.executeQuery(query);
 
-			if (rs.next()) {
-				tfname.setText(rs.getString("name"));
-				tfnationality.setText(rs.getString("nationality"));
-				lblsrc.setText(rs.getString("source"));
-				lbldest.setText(rs.getString("destination"));
-				labelfname.setText(rs.getString("flight_name"));
-				labelfcode.setText(rs.getString("flight_code"));
-				labeldate.setText(rs.getString("date"));
+				if (rs.next()) {
+	                tfname.setText(rs.getString("name"));
+	                tfticket.setText(rs.getString("ticket_no"));
+	                tfpnr.setText(rs.getString("pnr"));
+	                labelfname.setText(rs.getString("flight_name"));
+	                labelfcode.setText(rs.getString("flight_code"));
+	                tfsrc.setText(rs.getString("source"));
+	                tfdest.setText(rs.getString("destination"));
+	                labeldate.setText(rs.getString("date"));
 			} else {
-				JOptionPane.showMessageDialog(null, "Please enter correct PNR");
+				JOptionPane.showMessageDialog(null, "Please enter correct mobile no.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-
+		}  if (ae.getSource() == flight)  {
+			new Ticket();
+			}
+		
+	} 
 	public static void main(String[] args) {
 		new Boarding_pass();
 	}
