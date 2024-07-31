@@ -19,14 +19,14 @@ public class Home extends JFrame implements ActionListener {
 		// ===========>>>>>>>> FRAME SET <<<<<<<<<========================
 		Color color = new Color(246, 181, 116);
 
-		ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("AirLine_Management/icons/home.jpg.jpg"));
+		ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("AirLine_Management/icons/air.jpg"));
 		JLabel image = new JLabel(i1);
 		image.setBounds(0, 0, 1600, 800);
 		add(image);
 
-		JLabel heading = new JLabel("INDIAN AIRLINES");
-		heading.setBounds(450, 200, 800, 200);
-		heading.setFont(new Font("tahoma", Font.BOLD, 72));
+		JLabel heading = new JLabel("AIR INDIA");
+		heading.setBounds(470, 180, 800, 200);
+		heading.setFont(new Font("tahoma", Font.BOLD, 100));
 		heading.setForeground(color);
 		image.add(heading);
 
@@ -34,30 +34,49 @@ public class Home extends JFrame implements ActionListener {
 		JMenuBar menubar = new JMenuBar();
 		setJMenuBar(menubar);
 		JMenu details = new JMenu("Details");
+		details.setFont(new Font("tahoma", Font.BOLD, 16));
+		details.setBounds(10,10,80,20);
 		menubar.add(details);
 //============>>>>>>>     ITEM ADD ON MENU      <<<<<<<<<<========================
+		JMenuItem passenger = new JMenuItem("Add Passenger Details");
+		passenger.setFont(new Font("tahoma", Font.PLAIN, 12));
+		passenger.setBounds(10,10,80,20);
+		passenger.addActionListener(this);
+		details.add(passenger);
+		
 		JMenuItem flight_details = new JMenuItem("Flight Details");
+		flight_details.setFont(new Font("tahoma", Font.PLAIN, 12));
+		flight_details.setBounds(10,10,80,20);
 		flight_details.addActionListener(this);
 		details.add(flight_details);
 		
+		JMenuItem Book_flight = new JMenuItem("Book Ticket");
+		Book_flight.setFont(new Font("tahoma", Font.PLAIN, 12));
+		Book_flight.setBounds(10,10,80,20);
+		Book_flight.addActionListener(this);
+		details.add(Book_flight);
 
-		JMenuItem check_pnr_status = new JMenuItem("PNR Status");
-		details.add(check_pnr_status);
+		JMenuItem Journey_Details = new JMenuItem("PNR Status");
+		Journey_Details.setFont(new Font("tahoma", Font.PLAIN, 12));
+		Journey_Details.setBounds(10,10,80,20);
+		details.add(Journey_Details);
+		Journey_Details.addActionListener(this);
 
-		JMenuItem book_ticket = new JMenuItem("Book Ticket");
-		book_ticket.addActionListener(this);
-		details.add(book_ticket);
+		JMenuItem Cancel_ticket = new JMenuItem("Cancel Ticket");
+		Cancel_ticket.setFont(new Font("tahoma", Font.PLAIN, 12));
+		Cancel_ticket.setBounds(10,10,80,20);
+		Cancel_ticket.addActionListener(this);
+	  	details.add(Cancel_ticket);
 
-		JMenuItem cancel = new JMenuItem("Cancel Ticket");
-		details.add(cancel);
-
-		JMenuItem customer = new JMenuItem("Customer Details");
-		details.add(customer);
+		
 
 		JMenu my_booking = new JMenu("My Booking");
 		menubar.add(my_booking);
-		JMenuItem boarding_pass = new JMenuItem("Boarding Pass");
-		my_booking.add(boarding_pass);
+		my_booking.setFont(new Font("tahoma", Font.BOLD, 16));
+		my_booking.setBounds(90,10,80,20);
+		JMenuItem Boarding_pass = new JMenuItem("Boarding Pass");
+		Boarding_pass.addActionListener(this);
+		my_booking.add(Boarding_pass);
 
 		setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
@@ -67,9 +86,21 @@ public class Home extends JFrame implements ActionListener {
 		String text = ae.getActionCommand();
 		if (text.equals("Flight Details")) {
 			new FlightInfo();
-		setVisible(false);
+			setVisible(false);
+		} else if (text.equals("Add Passenger Details")) {
+			new Add_Passenger();
+			setVisible(false);
 		} else if (text.equals("Book Ticket")) {
-			new Add_Customer();
+			new Book_flight();
+			setVisible(false);
+		} else if (text.equals("Cancel Ticket")) {
+			new Cancel_ticket();
+			setVisible(false);
+		}else if (text.equals("PNR Status")) {
+			new Journey_Details();
+			setVisible(false);
+		}else if (text.equals("Boarding Pass")) {
+			new Boarding_pass();
 			setVisible(false);
 		}
 
