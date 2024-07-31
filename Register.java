@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 
 public class Register extends JFrame implements ActionListener {
 	
-	JButton submit, reset, close;
+	JButton submit, reset, close, login;
 	JTextField tfusername;
 	JPasswordField tfpassword;
 	public Register() {
@@ -26,14 +26,14 @@ public class Register extends JFrame implements ActionListener {
 		setVisible(true);
 		ImageIcon i1= new ImageIcon(ClassLoader.getSystemResource("AirLine_Management/icons/register.jpg"));
 		JLabel image= new JLabel(i1);
-		image.setBounds(0,0,600,350);
+		image.setBounds(0,0,600,400);
 		add(image);
 		setLayout(null);
 		
 //============>>>>>>>>>>   HEADING <<<<<<<<<===================
-		Label heading = new Label("Amit Airlines Welcomes You!!");
+		Label heading = new Label("AIR-INDIA Welcomes You!!");
 		heading.setFont(new Font("tahoma", Font.ITALIC, 16));
-		heading.setBounds(190,10,215,30);
+		heading.setBounds(170,10,210,30);
 		heading.setForeground(Color.BLACK);
 		image.add(heading);
 
@@ -44,34 +44,47 @@ public class Register extends JFrame implements ActionListener {
 		image.add(heading1);
 
 		JLabel lbusername = new JLabel("USER NAME :");
-		lbusername.setBounds(30,150, 120, 25);
+		lbusername.setBounds(30,130, 120,30);
 		lbusername.setFont(new Font("tahoma", Font.ITALIC, 20));
+		lbusername.setForeground(Color.WHITE);
 		
     	image.add(lbusername);
 		tfusername = new JTextField();
-		tfusername.setBounds(150, 150, 250, 30);
+		tfusername.setBounds(155, 130, 250, 30);
 		tfusername.setFont(new Font("tahoma", Font.PLAIN, 20));
 		image.add(tfusername);
 
 		JLabel lbpassword = new JLabel("PASSWORD :");
-		lbpassword.setBounds(30, 190, 120, 30);
+		lbpassword.setBounds(30, 170, 120, 30);
 		lbpassword.setFont(new Font("tahoma", Font.ITALIC, 20));
+		lbpassword.setForeground(Color.WHITE);
 		image.add(lbpassword);
 		tfpassword = new JPasswordField();
-		tfpassword.setBounds(150, 190, 250, 25);
+		tfpassword.setBounds(155, 170, 250, 25);
 		tfpassword.setFont(new Font("tahoma", Font.PLAIN, 20));
 		image.add(tfpassword);
 
 //=============>>>>>>>>>>>      SET BUTTON   <<<<<<<<<<<===================		
 		submit = new JButton("SAVE");
-		submit.setBounds(140, 280, 120, 20);
+		submit.setBounds(140, 250, 120, 20);
 		submit.addActionListener(this);
 		image.add(submit);
 
 		reset = new JButton("RESET");
-		reset.setBounds(300, 280, 120, 20);
+		reset.setBounds(300, 250, 120, 20);
 		reset.addActionListener(this);
 		image.add(reset);
+		
+	
+		Label heading2 = new Label("Already Register go to login page >>>");
+		heading2.setFont(new Font("tahoma", Font.BOLD, 10));
+		heading2.setBounds(90,303,200,15);
+		heading2.setForeground(Color.BLACK);
+		image.add(heading2);
+		login = new JButton("Login");
+		login.setBounds(300, 300, 120, 20);
+		login.addActionListener(this);
+		image.add(login);
         
 		setSize(600, 400);
 		setLocation(600, 250);
@@ -82,28 +95,29 @@ public class Register extends JFrame implements ActionListener {
 
 			String username = tfusername.getText();
 			String password = tfpassword.getText();
-      		try {
-				Connect c = new Connect();
 
-			String query = "INSERT INTO LOGIN VALUES('" + username + "' and password = '" + password +"')";
-		int result =     c.stmt.executeUpdate(query);
-		
-		if (result==1) {
-			System.out.println("Success");
-		}else {
-			System.out.println("failed");
+			try {
+				Connect c = new Connect();
+				String query= "INSERT INTO LOGIN VALUES('"+username+"','"+password+"')";
+		       
+				c.stmt.executeUpdate(query);
+				JOptionPane.showMessageDialog(null,"Data saved Successfully");
+				tfusername.setText("");
+				tfpassword.setText("");
+			    new Login();
+			    setVisible(false);
+			} catch (Exception e) {
+			System.out.println("invailid data");
 		}
 			
-			
-				
-			} catch (Exception e) {
-				System.out.println("not working");
-			}
-		
-		} else if (ae.getSource() == reset) {
+	}	
+		 if (ae.getSource() == reset) {
 			tfusername.setText("");
 			tfpassword.setText("");
-		}
+		}else if (ae.getSource()==login) {
+			new Login();
+			setVisible(false);
+		} 
 	}
 	
 	
