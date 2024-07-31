@@ -42,6 +42,7 @@ public class Login extends JFrame implements ActionListener {
 		lbusername.setForeground(Color.WHITE);
     	image.add(lbusername);
 		tfusername = new JTextField();
+		tfusername.setFont(new Font("tahoma", Font.ITALIC, 20));
 		tfusername.setBounds(200, 50, 250, 30);
 		image.add(tfusername);
 
@@ -51,6 +52,7 @@ public class Login extends JFrame implements ActionListener {
 	    lbpassword.setForeground(Color.WHITE);
 		image.add(lbpassword);
 		tfpassword = new JPasswordField();
+		tfpassword.setFont(new Font("tahoma", Font.ITALIC, 20));
 		tfpassword.setBounds(200, 90, 250, 30);
 		image.add(tfpassword);
 
@@ -90,7 +92,8 @@ public class Login extends JFrame implements ActionListener {
 			     setVisible(false);
 				}else {
 					JOptionPane.showMessageDialog(null, "Invailid Username OR Password");
-					setVisible(false);
+					tfusername.setText("");
+					tfpassword.setText("");
 				}
 				
 			} catch (Exception e) {
@@ -108,6 +111,4 @@ public class Login extends JFrame implements ActionListener {
 		new Login();
 
 	}
-
 }
-
