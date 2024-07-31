@@ -71,7 +71,7 @@ public class Book_flight extends JFrame implements ActionListener{
         lblemail.setFont(new Font("Tahoma", Font.PLAIN, 16));
         add(lblemail); 
         tfemail = new JLabel();
-        tfemail.setBounds(220, 230, 150, 25);
+        tfemail.setBounds(220, 230, 250, 25);
         add(tfemail );
         
         
@@ -213,9 +213,12 @@ public class Book_flight extends JFrame implements ActionListener{
         } else {
             Random random = new Random();
             
+        
             String aadhar = tfaadhar.getText();
             String name = tfname.getText(); 
             String nationality = tfnationality.getText();
+            String mobile =tfmobile.getText();
+            String email= tfemail.getText();
             String flightname = labelfname.getText(); 
             String flightcode = labelfcode.getText();
             String src = source.getSelectedItem(); 
@@ -225,12 +228,12 @@ public class Book_flight extends JFrame implements ActionListener{
             try {
                 Connect c = new Connect();
 
-                String query = "insert into reservation values('PNR"+random.nextInt(1000000000)+"', 'AI-TIC-"+random.nextInt(1000000)+"', '"+aadhar+"', '"+name+"', '"+nationality+"', '"+flightname+"', '"+flightcode+"', '"+src+"', '"+dest+"', '"+date+"')";
+                String query = "insert into reservation values('AI-TIC-"+random.nextInt(1000000)+"','"+name+"' ,'PNR"+random.nextInt(1000000000)+"', '"+email+"', '"+mobile+"', '"+flightname+"', '"+flightcode+"', '"+src+"', '"+dest+"', '"+date+"')";
 
                 c.stmt.executeUpdate(query);
                 
                 JOptionPane.showMessageDialog(null, "Ticket Booked Successfully");
-
+                  new Boarding_pass();
                 setVisible(false);
             } catch (Exception e) {
                 e.printStackTrace();
