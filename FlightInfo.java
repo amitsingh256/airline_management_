@@ -14,7 +14,7 @@ public class FlightInfo extends JFrame {
 		JTable table= new JTable();
 		try {
 			Connect c= new Connect();
-			String query = "SELECT * FROM FLIGHT_DETAILS";
+			String query = "SELECT * FROM FLIGHT_INFO";
 			ResultSet rs = c.stmt.executeQuery(query);
 	          table.setModel(DbUtils.resultSetToTableModel(rs));
 			
@@ -22,11 +22,11 @@ public class FlightInfo extends JFrame {
 			System.out.println(e);
 		}
 		JScrollPane jsp =new JScrollPane(table);
-		jsp.setBounds(00,20,900,600);
+		jsp.setBounds(10,20,1000,600);
 		add(jsp);
 		
-		setSize(900,600);
-		setLocation(300,150);
+		setSize(1000,800);
+		setLocation(200,100);
 		setVisible(true);
 	}
 	
