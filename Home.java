@@ -4,12 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
 
 public class Home extends JFrame implements ActionListener {
@@ -17,7 +12,7 @@ public class Home extends JFrame implements ActionListener {
 	public Home() {
 		setLayout(null);
 		// ===========>>>>>>>> FRAME SET <<<<<<<<<========================
-		Color color = new Color(246, 181, 116);
+		Color color = new Color(255, 71, 71);
 
 		ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("AirLine_Management/icons/air.jpg"));
 		JLabel image = new JLabel(i1);
